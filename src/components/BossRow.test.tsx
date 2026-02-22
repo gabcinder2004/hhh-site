@@ -35,7 +35,7 @@ describe('BossRow', () => {
   it('uses dimmed grey styling for unkilled bosses', () => {
     render(<BossRow boss={unkilledBoss} />)
     const row = screen.getByTestId('boss-row')
-    expect(row.className).toMatch(/text-gray/)
+    expect(row.className).toMatch(/text-muted/)
   })
 
   it('does not show a checkmark for unkilled bosses', () => {

@@ -39,7 +39,7 @@ describe('RaidTier', () => {
   it('renders a progress bar with gold fill', () => {
     render(<RaidTier raid={raid} isExpanded onToggle={onToggle} />)
     const progressBar = screen.getByTestId('progress-bar-fill')
-    expect(progressBar.className).toMatch(/bg-gold/)
+    expect(progressBar.className).toMatch(/from-gold/)
     expect(progressBar.style.width).toBe('80%')
   })
 

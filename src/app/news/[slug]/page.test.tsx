@@ -17,6 +17,7 @@ vi.mock('@portabletext/react', () => ({
 
 // Mock Sanity client
 vi.mock('@/lib/sanity/client', () => ({
+  isSanityConfigured: true,
   client: {
     fetch: vi.fn(),
   },

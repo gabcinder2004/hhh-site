@@ -1,12 +1,21 @@
 @import "tailwindcss";
 
+/* ===== The Gilded Tavern — Color Palette ===== */
 :root {
-  --background: #0a0e1a;
-  --foreground: #f0f0f0;
-  --navy: #0a0e1a;
-  --royal-blue: #1e3a6e;
-  --gold: #d4a843;
-  --off-white: #f0f0f0;
+  --background: #0d0b0e;
+  --background-elevated: #1a1520;
+  --surface: #1e1a24;
+  --foreground: #e8e2d6;
+  --gold: #c9a84c;
+  --gold-light: #f5d978;
+  --accent-blue: #3d5a8a;
+  --muted: #7a7068;
+  --glow: rgba(201, 168, 76, 0.15);
+
+  /* Legacy aliases for backward compat */
+  --navy: #0d0b0e;
+  --royal-blue: #3d5a8a;
+  --off-white: #e8e2d6;
 }
 
 @theme inline {
@@ -15,13 +24,140 @@
   --color-navy: var(--navy);
   --color-royal-blue: var(--royal-blue);
   --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
   --color-off-white: var(--off-white);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-accent-blue: var(--accent-blue);
+  --font-display: var(--font-cinzel-decorative);
+  --font-heading: var(--font-cinzel);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
+/* ===== Base Styles ===== */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: rgba(201, 168, 76, 0.3);
+  color: var(--foreground);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* ===== Atmospheric Overlays ===== */
+
+/* Noise grain texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.025;
+  z-index: 40;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Vignette effect on page edges */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 39;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(13, 11, 14, 0.6) 100%);
+}
+
+/* ===== Keyframe Animations ===== */
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(201, 168, 76, 0.08); }
+  50% { box-shadow: 0 0 24px rgba(201, 168, 76, 0.2); }
+}
+
+@keyframes fillProgress {
+  from { width: 0%; }
+}
+
+@keyframes scaleFadeIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== Utility Classes ===== */
+
+/* Gold shimmer text */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    var(--gold-light) 25%,
+    var(--gold) 50%,
+    var(--gold-light) 75%,
+    var(--gold) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Fade-in reveal */
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+/* Scale + fade for lightbox */
+.animate-scale-fade-in {
+  animation: scaleFadeIn 0.3s ease-out forwards;
+}
+
+/* Progress bar fill */
+.animate-progress {
+  animation: fillProgress 1.2s ease-out forwards;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(30, 26, 36, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 168, 76, 0.08);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(201, 168, 76, 0.25);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.08), 0 8px 32px rgba(0, 0, 0, 0.3);
 }

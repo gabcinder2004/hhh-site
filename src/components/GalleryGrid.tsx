@@ -17,16 +17,16 @@ export default function GalleryGrid({ images, onImageClick }: GalleryGridProps) 
           <img
             src={sanityImageUrl(image.image)}
             alt={image.caption || 'Gallery image'}
-            className="w-full cursor-pointer rounded-lg"
+            className="w-full cursor-pointer rounded-xl transition-all duration-300 hover:shadow-[0_0_24px_rgba(201,168,76,0.15)] hover:ring-1 hover:ring-gold/20"
             onClick={() => onImageClick(index)}
           />
           {(image.caption || image.uploadedBy) && (
-            <div className="mt-1 px-1">
+            <div className="mt-1.5 px-1">
               {image.caption && (
                 <p className="text-sm text-off-white">{image.caption}</p>
               )}
               {image.uploadedBy && (
-                <p className="text-xs text-off-white/50">by {image.uploadedBy}</p>
+                <p className="text-xs text-muted">by {image.uploadedBy}</p>
               )}
             </div>
           )}

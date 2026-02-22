@@ -11,10 +11,10 @@ export default function TagFilter({ tags, activeTag, onTagSelect }: TagFilterPro
     <div className="mb-6 flex flex-wrap gap-2">
       <button
         onClick={() => onTagSelect(null)}
-        className={`rounded-full px-4 py-1 text-sm font-medium transition-colors ${
+        className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 ${
           activeTag === null
-            ? 'bg-gold text-navy'
-            : 'border border-royal-blue text-off-white hover:bg-royal-blue/20'
+            ? 'bg-gradient-to-r from-gold to-gold-light text-[#0d0b0e] shadow-[0_0_12px_rgba(201,168,76,0.2)]'
+            : 'border border-gold/20 text-off-white/80 hover:border-gold/40 hover:bg-gold/5'
         }`}
       >
         All
@@ -23,10 +23,10 @@ export default function TagFilter({ tags, activeTag, onTagSelect }: TagFilterPro
         <button
           key={tag}
           onClick={() => onTagSelect(tag)}
-          className={`rounded-full px-4 py-1 text-sm font-medium transition-colors ${
+          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 ${
             activeTag === tag
-              ? 'bg-gold text-navy'
-              : 'border border-royal-blue text-off-white hover:bg-royal-blue/20'
+              ? 'bg-gradient-to-r from-gold to-gold-light text-[#0d0b0e] shadow-[0_0_12px_rgba(201,168,76,0.2)]'
+              : 'border border-gold/20 text-off-white/80 hover:border-gold/40 hover:bg-gold/5'
           }`}
         >
           {tag}

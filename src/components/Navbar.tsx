@@ -16,16 +16,18 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-navy/95 px-6 py-4 backdrop-blur-sm">
-      <span className="text-lg font-bold text-off-white">Happy Hour Heroes</span>
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b border-gold/10 bg-[#0d0b0e]/80 px-6 py-4 shadow-[0_1px_12px_rgba(201,168,76,0.06)] backdrop-blur-xl">
+      <span className="font-display text-xl font-bold tracking-wider text-gold-light">Happy Hour Heroes</span>
 
       {/* Desktop links */}
-      <ul className="hidden gap-6 md:flex">
+      <ul className="hidden gap-8 md:flex">
         {navLinks.map(({ href, label }) => (
           <li key={href}>
             <Link
               href={href}
-              className={pathname === href ? 'text-gold font-semibold' : 'text-off-white hover:text-gold transition-colors'}
+              className={pathname === href
+                ? 'font-display font-semibold tracking-wide text-gold-light'
+                : 'font-display tracking-wide text-off-white transition-colors duration-300 hover:text-gold-light'}
             >
               {label}
             </Link>
@@ -46,9 +48,9 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div data-testid="mobile-menu" className="fixed inset-0 z-50 flex flex-col bg-navy p-6">
+        <div data-testid="mobile-menu" className="fixed inset-0 z-50 flex flex-col bg-[#0d0b0e]/95 p-6 backdrop-blur-xl">
           <div className="flex items-center justify-between">
-            <span className="text-lg font-bold text-off-white">Happy Hour Heroes</span>
+            <span className="font-display text-lg font-bold tracking-wider text-gold">Happy Hour Heroes</span>
             <button
               aria-label="Close"
               className="text-off-white"
@@ -64,7 +66,9 @@ export default function Navbar() {
               <li key={href}>
                 <Link
                   href={href}
-                  className={pathname === href ? 'text-gold text-xl font-semibold' : 'text-off-white text-xl hover:text-gold transition-colors'}
+                  className={pathname === href
+                    ? 'font-display text-xl font-semibold tracking-wide text-gold'
+                    : 'font-display text-xl tracking-wide text-off-white transition-colors duration-300 hover:text-gold-light'}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {label}

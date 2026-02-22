@@ -14,7 +14,7 @@ export default function RaidProgressList({ raids }: RaidProgressListProps) {
   )
 
   if (raids.length === 0) {
-    return <p className="text-off-white/50">No raid progress recorded yet.</p>
+    return <p className="text-muted">No raid progress recorded yet.</p>
   }
 
   return (

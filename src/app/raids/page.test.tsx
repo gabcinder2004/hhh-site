@@ -6,6 +6,7 @@ import type { Raid } from '@/lib/sanity/types'
 // Mock the Sanity client
 const mockFetch = vi.fn()
 vi.mock('@/lib/sanity/client', () => ({
+  isSanityConfigured: true,
   client: { fetch: (...args: unknown[]) => mockFetch(...args) },
 }))
 

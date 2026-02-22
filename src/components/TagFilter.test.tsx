@@ -22,19 +22,19 @@ describe('TagFilter', () => {
   it('styles the active tag button with gold background', () => {
     render(<TagFilter tags={tags} activeTag="Raid" onTagSelect={onTagSelect} />)
     const raidButton = screen.getByRole('button', { name: 'Raid' })
-    expect(raidButton.className).toMatch(/bg-gold/)
+    expect(raidButton.className).toMatch(/from-gold/)
   })
 
   it('styles the "All" button with gold background when no tag is active', () => {
     render(<TagFilter tags={tags} activeTag={null} onTagSelect={onTagSelect} />)
     const allButton = screen.getByRole('button', { name: 'All' })
-    expect(allButton.className).toMatch(/bg-gold/)
+    expect(allButton.className).toMatch(/from-gold/)
   })
 
   it('styles inactive tag buttons without gold background', () => {
     render(<TagFilter tags={tags} activeTag="Raid" onTagSelect={onTagSelect} />)
     const pvpButton = screen.getByRole('button', { name: 'PvP' })
-    expect(pvpButton.className).not.toMatch(/bg-gold/)
+    expect(pvpButton.className).not.toMatch(/from-gold/)
   })
 
   it('calls onTagSelect with the tag string when a tag is clicked', async () => {

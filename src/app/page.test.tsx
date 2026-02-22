@@ -28,6 +28,7 @@ vi.mock('@/lib/sanity/image', () => ({
 
 // Mock Sanity client to avoid projectId error
 vi.mock('@/lib/sanity/client', () => ({
+  isSanityConfigured: true,
   client: {
     fetch: vi.fn(),
   },

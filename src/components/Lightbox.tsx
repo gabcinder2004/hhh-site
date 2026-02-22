@@ -41,17 +41,17 @@ export default function Lightbox({
   return (
     <div
       data-testid="lightbox-overlay"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0d0b0e]/90 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="relative flex max-h-[90vh] max-w-[90vw] flex-col items-center"
+        className="animate-scale-fade-in relative flex max-h-[90vh] max-w-[90vw] flex-col items-center"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
           aria-label="Close lightbox"
-          className="absolute -top-10 right-0 text-2xl text-off-white hover:text-gold"
+          className="absolute -top-10 right-0 text-2xl text-off-white/80 transition-colors duration-300 hover:text-gold"
         >
           X
         </button>
@@ -59,7 +59,7 @@ export default function Lightbox({
         <button
           onClick={onPrev}
           aria-label="Previous image"
-          className="absolute left-[-3rem] top-1/2 -translate-y-1/2 text-3xl text-off-white hover:text-gold"
+          className="absolute left-[-3rem] top-1/2 -translate-y-1/2 text-3xl text-off-white/60 transition-colors duration-300 hover:text-gold"
         >
           &lsaquo;
         </button>
@@ -67,13 +67,13 @@ export default function Lightbox({
         <img
           src={sanityImageUrl(current.image)}
           alt={current.caption || 'Gallery image'}
-          className="max-h-[80vh] max-w-full rounded-lg object-contain"
+          className="max-h-[80vh] max-w-full rounded-xl object-contain shadow-[0_0_40px_rgba(0,0,0,0.5)]"
         />
 
         <button
           onClick={onNext}
           aria-label="Next image"
-          className="absolute right-[-3rem] top-1/2 -translate-y-1/2 text-3xl text-off-white hover:text-gold"
+          className="absolute right-[-3rem] top-1/2 -translate-y-1/2 text-3xl text-off-white/60 transition-colors duration-300 hover:text-gold"
         >
           &rsaquo;
         </button>
@@ -82,7 +82,7 @@ export default function Lightbox({
           {current.caption && (
             <p className="text-off-white">{current.caption}</p>
           )}
-          <p className="text-sm text-off-white/50">
+          <p className="font-mono text-sm text-muted">
             {currentIndex + 1} / {images.length}
           </p>
         </div>

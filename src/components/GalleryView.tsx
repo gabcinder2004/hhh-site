@@ -44,7 +44,7 @@ export default function GalleryView({ images }: GalleryViewProps) {
   }, [filteredImages.length])
 
   if (images.length === 0) {
-    return <p className="text-off-white/50">No screenshots uploaded yet.</p>
+    return <p className="text-muted">No screenshots uploaded yet.</p>
   }
 
   return (

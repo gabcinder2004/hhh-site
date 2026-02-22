@@ -17,8 +17,8 @@ describe('Hero', () => {
 
   it('renders the tagline', () => {
     render(<Hero />)
-    expect(screen.getByText(/Alliance & Horde/)).toBeInTheDocument()
-    expect(screen.getByText(/TurtleWoW/)).toBeInTheDocument()
+    expect(screen.getByText(/Chill Raids/)).toBeInTheDocument()
+    expect(screen.getByText(/Classic Vibes/)).toBeInTheDocument()
   })
 
   it('renders a CTA button linking to /about', () => {
