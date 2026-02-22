@@ -1,17 +1,15 @@
 'use client'
 
-import { useState } from 'react'
 import type { Raid } from '@/lib/sanity/types'
 import BossRow from './BossRow'
 
 interface RaidTierProps {
   raid: Raid
-  defaultExpanded: boolean
+  isExpanded: boolean
+  onToggle: () => void
 }
 
-export default function RaidTier({ raid, defaultExpanded }: RaidTierProps) {
-  const [expanded, setExpanded] = useState(defaultExpanded)
-
+export default function RaidTier({ raid, isExpanded, onToggle }: RaidTierProps) {
   const killed = raid.bosses.filter((b) => b.killed).length
   const total = raid.bosses.length
   const percent = total > 0 ? Math.round((killed / total) * 100) : 0
@@ -19,7 +17,7 @@ export default function RaidTier({ raid, defaultExpanded }: RaidTierProps) {
   return (
     <div className="overflow-hidden rounded-lg border border-royal-blue/30 bg-navy/50">
       <button
-        onClick={() => setExpanded(!expanded)}
+        onClick={onToggle}
         className="flex w-full items-center justify-between px-5 py-4 text-left transition-colors hover:bg-royal-blue/20"
       >
         <span className="text-lg font-semibold text-off-white">{raid.name}</span>
@@ -32,10 +30,10 @@ export default function RaidTier({ raid, defaultExpanded }: RaidTierProps) {
               style={{ width: `${percent}%` }}
             />
           </div>
-          <span className="text-off-white/50">{expanded ? '▲' : '▼'}</span>
+          <span className="text-off-white/50">{isExpanded ? '▲' : '▼'}</span>
         </div>
       </button>
-      {expanded && (
+      {isExpanded && (
         <div data-testid="boss-list" className="border-t border-royal-blue/20">
           {raid.bosses.map((boss) => (
             <BossRow key={boss.name} boss={boss} />

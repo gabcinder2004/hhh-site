@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen, within } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import RaidsPage from './page'
 import type { Raid } from '@/lib/sanity/types'
 
@@ -60,16 +60,14 @@ describe('RaidsPage', () => {
   it('collapses older tiers by default', async () => {
     mockFetch.mockResolvedValue(mockRaids)
     render(await RaidsPage())
-    // Onyxia is the second raid (older), its bosses should be hidden
-    // "Onyxia" appears as the tier name but not as a boss row in a visible list
-    const allBossLists = screen.getAllByTestId('boss-list')
     // Only 1 boss list should be expanded (the first tier)
+    const allBossLists = screen.getAllByTestId('boss-list')
     expect(allBossLists).toHaveLength(1)
   })
 
   it('shows empty state when no raids exist', async () => {
     mockFetch.mockResolvedValue([])
     render(await RaidsPage())
-    expect(screen.getByText(/No raid progress/i)).toBeInTheDocument()
+    expect(screen.getByText('No raid progress recorded yet.')).toBeInTheDocument()
   })
 })
