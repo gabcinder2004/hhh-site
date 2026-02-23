@@ -32,11 +32,12 @@ describe('Footer', () => {
     expect(nav).toBeInTheDocument()
   })
 
-  it('renders all four navigation links with correct hrefs', () => {
+  it('renders all five navigation links with correct hrefs', () => {
     render(<Footer />)
     const links = [
       { label: 'Home', href: '/' },
       { label: 'Raids', href: '/raids' },
+      { label: 'Roster', href: '/roster' },
       { label: 'Gallery', href: '/gallery' },
       { label: 'About', href: '/about' },
     ]

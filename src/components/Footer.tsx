@@ -5,6 +5,7 @@ const DISCORD_INVITE = 'https://discord.gg/YOUR_INVITE_CODE'
 const footerLinks = [
   { href: '/', label: 'Home' },
   { href: '/raids', label: 'Raids' },
+  { href: '/roster', label: 'Roster' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/about', label: 'About' },
 ]

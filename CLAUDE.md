@@ -27,6 +27,21 @@ For full project context → see `docs/sdlc/project-context.md`
 3. **Feature branches + PRs** — no direct commits to master
 4. **Track everything** — `bd create` before code, `bd close` after delivery
 5. **Verify before claiming done** — run commands, read output, evidence before assertions
+6. **`frontend-design:frontend-design` for ALL UI work** — any component, page, or visual change MUST invoke this skill before writing markup/styles. No exceptions.
+
+---
+
+## Instruction Precedence
+
+**Project workflow rules (this file) ALWAYS govern HOW work is executed.**
+
+Skills and plugins define WHAT to build. This file defines HOW to execute it.
+When a skill's instructions conflict with these rules, these rules win. Specifically:
+
+- **TDD is non-negotiable** — no skill can override this. Tests before implementation, always.
+- **Agent teams for parallel work** — if tasks.md defines a parallelism map, use agent teams. No sequential solo implementation of independent tasks.
+- **Beads tracking is required** — every task group needs a beads issue, regardless of what the skill says about tracking.
+- **The Execution Plan in `tasks.md` governs implementation** — when `opsx:apply` or any implementation skill runs, the Execution Plan section in tasks.md specifies parallelism, TDD requirements, and agent team structure. Follow it.
 
 ---
 

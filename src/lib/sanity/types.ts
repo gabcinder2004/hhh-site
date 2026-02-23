@@ -58,3 +58,13 @@ export interface GuildInfo {
   discordLink?: string
   officers: Officer[]
 }
+
+export interface Member {
+  _id: string
+  _type: 'member'
+  characterName: string
+  realm: string
+  guildRank: 'gm' | 'officer' | 'raider' | 'member'
+  role: 'tank' | 'healer' | 'dps'
+  notes?: string
+}

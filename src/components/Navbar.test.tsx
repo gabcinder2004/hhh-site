@@ -30,6 +30,7 @@ describe('Navbar', () => {
     render(<Navbar />)
     expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/')
     expect(screen.getByRole('link', { name: 'Raids' })).toHaveAttribute('href', '/raids')
+    expect(screen.getByRole('link', { name: 'Roster' })).toHaveAttribute('href', '/roster')
     expect(screen.getByRole('link', { name: 'Gallery' })).toHaveAttribute('href', '/gallery')
     expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('href', '/about')
   })
@@ -47,6 +48,18 @@ describe('Navbar', () => {
     const raidsLink = screen.getByRole('link', { name: 'Raids' })
     const classes = raidsLink.className.split(/\s+/)
     expect(classes).not.toContain('text-gold')
+  })
+
+  it('renders Roster link between Raids and Gallery', () => {
+    render(<Navbar />)
+    const nav = screen.getByRole('navigation')
+    const links = within(nav).getAllByRole('link')
+    const labels = links.map((link) => link.textContent)
+    const raidsIndex = labels.indexOf('Raids')
+    const rosterIndex = labels.indexOf('Roster')
+    const galleryIndex = labels.indexOf('Gallery')
+    expect(rosterIndex).toBeGreaterThan(raidsIndex)
+    expect(rosterIndex).toBeLessThan(galleryIndex)
   })
 
   it('has a fixed top position', () => {
@@ -78,7 +91,7 @@ describe('Navbar', () => {
       expect(mobileMenu).toBeInTheDocument()
 
       const menuLinks = within(mobileMenu).getAllByRole('link')
-      expect(menuLinks).toHaveLength(4)
+      expect(menuLinks).toHaveLength(5)
     })
 
     it('closes mobile menu when a link is clicked', async () => {
