@@ -53,3 +53,20 @@ export const guildInfoQuery = `*[_type == "guildInfo"][0] {
   discordLink,
   officers
 }`
+
+export const membersQuery = `*[_type == "member"] | order(
+  select(
+    guildRank == "gm" => 0,
+    guildRank == "officer" => 1,
+    guildRank == "raider" => 2,
+    3
+  ) asc,
+  characterName asc
+) {
+  _id,
+  characterName,
+  realm,
+  guildRank,
+  role,
+  notes
+}`
